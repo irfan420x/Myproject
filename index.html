@@ -3,51 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal World | AI-Powered Portfolio</title>
+    <title>Elite Hacker Portfolio | Secure Access</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         :root {
-            --primary: #6a11cb;
-            --secondary: #2575fc;
+            --primary: #4db8ff;
+            --secondary: #a7c7e7;
             --accent: #ff6b6b;
-            --dark: #0f0f1e;
-            --darker: #0a0a14;
-            --light: #f0f0ff;
-            --card-bg: rgba(30, 30, 44, 0.8);
-            --glass: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --dark: #1a1a2e;
+            --darker: #16213e;
+            --light: #e6f7ff;
+            --card-bg: rgba(26, 26, 46, 0.9);
+            --glass: rgba(77, 184, 255, 0.1);
+            --glass-border: rgba(77, 184, 255, 0.2);
+            --shadow: 0 0 20px rgba(77, 184, 255, 0.3);
+            --transition: all 0.4s ease;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, #6c5ce7 100%);
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a1a 0%, #16162e 100%);
-            color: var(--light);
+            background: var(--darker);
+            color: var(--secondary);
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(77, 184, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(108, 92, 231, 0.05) 0%, transparent 20%);
         }
 
-        body::before {
-            content: '';
-            position: absolute;
+        /* Matrix Rain Background */
+        #matrix {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(106, 17, 203, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 90% 80%, rgba(37, 117, 252, 0.15) 0%, transparent 20%);
-            z-index: -1;
+            z-index: -2;
+            opacity: 0.1;
+        }
+
+        /* Scanline Effect */
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(77, 184, 255, 0.5);
+            box-shadow: 0 0 20px rgba(77, 184, 255, 0.8);
+            z-index: 9999;
+            animation: scan 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scan {
+            0% { top: 0; }
+            50% { top: 100%; }
+            100% { top: 100%; }
         }
 
         .container {
@@ -57,14 +78,14 @@
             padding: 0 15px;
         }
 
-        /* Floating Navigation Button */
+        /* Terminal Style Navigation Button */
         .nav-button {
             position: fixed;
             top: 30px;
             right: 30px;
             z-index: 1000;
             background: var(--card-bg);
-            border-radius: 50%;
+            border-radius: 4px;
             width: 60px;
             height: 60px;
             display: flex;
@@ -74,23 +95,23 @@
             cursor: pointer;
             box-shadow: var(--shadow);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--primary);
             transition: var(--transition);
         }
 
         .nav-button:hover {
             transform: scale(1.1);
-            background: var(--primary);
+            background: rgba(77, 184, 255, 0.2);
         }
 
         .nav-button:hover .dot {
-            background: white;
+            background: var(--secondary);
         }
 
         .dot {
             width: 6px;
             height: 6px;
-            background: var(--accent);
+            background: var(--primary);
             border-radius: 50%;
             margin: 2px 0;
             transition: var(--transition);
@@ -103,17 +124,20 @@
             right: -300px;
             width: 300px;
             height: 100vh;
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
+            background: rgba(22, 33, 62, 0.95);
             z-index: 999;
-            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.4);
+            box-shadow: -5px 0 25px rgba(77, 184, 255, 0.4);
             transition: var(--transition);
             padding: 100px 30px 30px;
-            border-left: 1px solid var(--glass-border);
+            border-left: 1px solid var(--primary);
+            opacity: 0;
+            visibility: hidden;
         }
 
         .side-nav.active {
             right: 0;
+            opacity: 1;
+            visibility: visible;
         }
 
         .side-nav ul {
@@ -128,17 +152,20 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            color: var(--light);
+            color: var(--primary);
             font-size: 1.3rem;
             font-weight: 600;
             padding: 12px 20px;
-            border-radius: 12px;
+            border-radius: 4px;
             transition: var(--transition);
+            font-family: 'Courier New', Courier, monospace;
+            border: 1px solid transparent;
         }
 
         .side-nav a:hover {
-            background: var(--gradient);
-            color: white;
+            background: rgba(77, 184, 255, 0.1);
+            color: var(--secondary);
+            border: 1px solid var(--primary);
             transform: translateX(-10px);
         }
 
@@ -147,6 +174,7 @@
             font-size: 1.5rem;
             width: 30px;
             text-align: center;
+            color: var(--secondary);
         }
 
         .close-nav {
@@ -161,10 +189,10 @@
 
         .close-nav:hover {
             transform: rotate(90deg);
-            color: var(--light);
+            color: var(--secondary);
         }
 
-        /* Hero Section */
+        /* Terminal Style Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -173,63 +201,105 @@
             padding: 0 20px;
         }
 
-        .hero-content {
-            text-align: center;
+        .terminal {
+            background: rgba(22, 33, 62, 0.9);
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            width: 100%;
             max-width: 800px;
             margin: 0 auto;
-            padding: 60px 40px;
-            background: var(--card-bg);
-            border-radius: 30px;
-            box-shadow: var(--shadow);
-            backdrop-filter: blur(10px);
-            animation: fadeInUp 1s ease;
-            border: 1px solid var(--glass-border);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #4361ee);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            color: var(--light);
-            opacity: 0.9;
-        }
-
-        .hero-image {
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            border: 5px solid var(--primary);
+            box-shadow: 0 0 30px rgba(77, 184, 255, 0.5);
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            background: url('https://i.postimg.cc/W1QzPJyk/IMG-20241004-230855.jpg') center/cover;
+        }
+
+        .terminal-header {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--primary);
+        }
+
+        .terminal-btn {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+
+        .btn-red { background: #ff5f56; }
+        .btn-yellow { background: #ffbd2e; }
+        .btn-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 30px;
+            min-height: 300px;
+        }
+
+        .terminal-line {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .terminal-prompt {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+
+        .terminal-command {
+            color: var(--primary);
+            background: transparent;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+            width: calc(100% - 120px);
+            outline: none;
+            caret-color: var(--primary);
+        }
+
+        .terminal-output {
+            color: var(--secondary);
+            line-height: 1.8;
+            margin-top: 20px;
+        }
+
+        .blinking-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.2rem;
+            background: var(--primary);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         /* Sections */
         section {
-            padding: 100px 0;
+            padding: 80px 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             position: relative;
         }
 
         .section-title h2 {
-            font-size: 2.8rem;
-            color: var(--light);
+            font-size: 2.5rem;
+            color: var(--primary);
             display: inline-block;
             padding-bottom: 15px;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .section-title h2::after {
@@ -239,106 +309,128 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
-            height: 5px;
-            background: var(--accent);
-            border-radius: 3px;
+            height: 3px;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
         }
 
-        /* AI Tools Section */
-        .ai-tools {
+        /* Hacker Tools Section */
+        .hacker-tools {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 50px;
+            gap: 40px;
             margin-top: 30px;
         }
 
-        .ai-tool {
+        .hacker-tool {
             background: var(--card-bg);
-            border-radius: 25px;
-            padding: 40px;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 30px;
             box-shadow: var(--shadow);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hacker-tool::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .tool-title {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .tool-title i {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-right: 15px;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
         }
 
-        /* AI Image Generator */
+        .tool-title h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        /* Cybernetic Image Generator */
         .input-group {
             display: flex;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 50px;
+            margin-bottom: 15px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 4px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--primary);
         }
 
         #prompt-input {
             flex: 1;
-            padding: 20px 30px;
+            padding: 15px 25px;
             background: transparent;
             border: none;
-            color: white;
-            font-size: 1.1rem;
+            color: var(--primary);
+            font-size: 1rem;
             outline: none;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         #prompt-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(77, 184, 255, 0.6);
         }
 
         #generate-btn {
-            background: var(--gradient);
-            color: white;
+            background: rgba(77, 184, 255, 0.1);
+            color: var(--primary);
             border: none;
-            padding: 0 40px;
-            font-size: 1.1rem;
+            padding: 0 30px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 1px solid var(--primary);
         }
 
         #generate-btn:hover {
-            background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+            background: rgba(77, 184, 255, 0.3);
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .image-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 400px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            margin: 20px 0;
+            min-height: 300px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 4px;
+            margin: 15px 0;
             overflow: hidden;
             position: relative;
-            border: 2px dashed var(--glass-border);
+            border: 1px solid var(--primary);
         }
 
         #generated-image {
             max-width: 100%;
-            max-height: 400px;
+            max-height: 300px;
             display: none;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(77, 184, 255, 0.3);
         }
 
         .placeholder-text {
             text-align: center;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
+            color: rgba(77, 184, 255, 0.5);
+            font-size: 1.1rem;
+            padding: 20px;
         }
 
         .loading {
@@ -347,37 +439,40 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            color: white;
-            font-size: 1.5rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+            text-align: center;
         }
 
         .loading i {
             animation: spin 1.5s linear infinite;
             display: block;
             text-align: center;
-            margin-bottom: 15px;
-            font-size: 3rem;
-            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
         }
 
         .download-btn {
             display: none;
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.1rem;
+            background: rgba(26, 26, 46, 0.5);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 12px 25px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            border-radius: 50px;
-            margin: 20px auto;
+            border-radius: 4px;
+            margin: 15px auto;
             transition: var(--transition);
             width: fit-content;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .download-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: rgba(77, 184, 255, 0.2);
+            box-shadow: 0 0 15px var(--primary);
         }
 
         @keyframes spin {
@@ -385,203 +480,238 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* AI Chat Assistant */
+        /* Cyber Chat Assistant */
         .chat-container {
-            height: 500px;
+            height: 400px;
             display: flex;
             flex-direction: column;
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            overflow: hidden;
+            background: rgba(26, 26, 46, 0.5);
+        }
+
+        .chat-header {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--primary);
+            font-size: 1.2rem;
+            color: var(--secondary);
         }
 
         .chat-messages {
             flex: 1;
             overflow-y: auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 1px solid var(--glass-border);
+            padding: 15px;
+            background: rgba(26, 26, 46, 0.3);
         }
 
         .message {
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 15px;
-            max-width: 80%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 4px;
+            max-width: 85%;
             animation: fadeIn 0.3s ease;
+            font-size: 0.95rem;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .user-message {
-            background: var(--gradient);
+            background: rgba(77, 184, 255, 0.2);
             margin-left: auto;
-            color: white;
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
         }
 
         .ai-message {
-            background: var(--glass);
+            background: rgba(26, 26, 46, 0.3);
             margin-right: auto;
-            border: 1px solid var(--glass-border);
+            color: var(--primary);
+            border: 1px solid var(--primary);
         }
 
-        .chat-input {
+        .chat-input-container {
             display: flex;
-            gap: 10px;
+            padding: 15px;
+            background: rgba(26, 26, 46, 0.8);
+            border-top: 1px solid var(--primary);
         }
 
         #chat-input {
             flex: 1;
-            padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: white;
-            font-size: 1rem;
+            padding: 12px 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            color: var(--primary);
+            font-size: 0.95rem;
             outline: none;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         #chat-input::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            color: rgba(77, 184, 255, 0.6);
         }
 
         #send-btn {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            width: 50px;
-            height: 50px;
+            background: rgba(77, 184, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
         }
 
         #send-btn:hover {
-            transform: scale(1.1);
+            background: rgba(77, 184, 255, 0.3);
+            box-shadow: 0 0 10px var(--primary);
         }
 
-        /* Favorites Section */
-        .favorites-container {
+        /* Targets Section */
+        .targets-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin-top: 40px;
         }
 
-        .favorite-card {
+        .target-card {
             background: var(--card-bg);
-            border-radius: 25px;
+            border-radius: 4px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             text-align: center;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--primary);
+            position: relative;
         }
 
-        .favorite-card:hover {
-            transform: translateY(-20px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        .target-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
         }
 
-        .favorite-image {
-            height: 350px;
+        .target-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        .target-image {
+            height: 280px;
             overflow: hidden;
             position: relative;
         }
 
-        .favorite-image img {
+        .target-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.9));
+        }
+
+        .target-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s ease;
         }
 
-        .favorite-card:hover .favorite-image img {
-            transform: scale(1.1);
+        .target-card:hover .target-image img {
+            transform: scale(1.05);
         }
 
-        .favorite-info {
-            padding: 30px 25px;
+        .target-info {
+            padding: 25px 20px;
         }
 
-        .favorite-info h3 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--light);
+        .target-info h3 {
+            font-size: 1.7rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        .favorite-info p {
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 25px;
-            min-height: 60px;
-            font-size: 1.1rem;
+        .target-info p {
+            color: rgba(77, 184, 255, 0.8);
+            margin-bottom: 20px;
+            min-height: 50px;
+            font-size: 1rem;
         }
 
-        .social-links {
+        .access-links {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 15px;
         }
 
-        .social-link {
+        .access-link {
             display: inline-flex;
             align-items: center;
-            padding: 10px 25px;
-            background: var(--primary);
-            color: white;
-            border-radius: 30px;
+            padding: 8px 20px;
+            background: rgba(26, 26, 46, 0.8);
+            color: var(--primary);
+            border-radius: 4px;
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
-            border: 2px solid var(--primary);
+            border: 1px solid var(--primary);
+            font-size: 0.9rem;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .social-link.instagram {
-            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
-            border: none;
+        .access-link:hover {
+            background: rgba(77, 184, 255, 0.2);
+            box-shadow: 0 0 15px var(--primary);
+            transform: translateY(-3px);
         }
 
-        .social-link:hover {
-            background: transparent;
-            color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .social-link.instagram:hover {
-            background: transparent;
-            color: #833ab4;
-            border: 2px solid #833ab4;
-        }
-
-        .social-link i {
-            margin-right: 8px;
-            font-size: 1.2rem;
+        .access-link i {
+            margin-right: 6px;
+            font-size: 1rem;
         }
 
         /* Contact Section */
         .contact-section {
-            background: var(--gradient);
-            color: white;
-            border-radius: 30px;
+            background: rgba(26, 26, 46, 0.8);
+            color: var(--primary);
+            border-radius: 4px;
             overflow: hidden;
-            margin: 50px 0;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--glass-border);
+            margin: 40px 0;
+            box-shadow: 0 0 30px rgba(77, 184, 255, 0.5);
+            border: 1px solid var(--primary);
         }
 
         .contact-container {
-            padding: 80px 40px;
+            padding: 60px 30px;
             text-align: center;
         }
 
         .contact-title {
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 10px var(--primary);
+            color: var(--secondary);
         }
 
         .contact-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 50px;
+            font-size: 1.2rem;
+            margin-bottom: 40px;
             opacity: 0.9;
         }
 
@@ -589,81 +719,106 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 40px;
-            margin-top: 40px;
+            gap: 30px;
+            margin-top: 30px;
         }
 
         .contact-method {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            width: 240px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 4px;
+            padding: 25px;
+            width: 220px;
             transition: var(--transition);
-            border: 1px solid var(--glass-border);
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-method::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
         }
 
         .contact-method:hover {
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 0 20px var(--primary);
         }
 
         .contact-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--secondary);
             transition: var(--transition);
+            text-shadow: 0 0 10px var(--secondary);
         }
 
         .contact-method:hover .contact-icon {
-            transform: scale(1.2);
+            transform: scale(1.1);
+            color: var(--primary);
         }
 
         .contact-method h4 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--secondary);
         }
 
         .contact-method a {
-            font-size: 1.1rem;
+            font-size: 1rem;
             opacity: 0.9;
-            color: white;
+            color: var(--primary);
             text-decoration: none;
             display: block;
-            margin-top: 10px;
+            margin-top: 8px;
             transition: all 0.3s;
             word-break: break-all;
         }
 
         .contact-method a:hover {
             opacity: 1;
-            text-decoration: underline;
+            text-shadow: 0 0 10px var(--primary);
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 10, 20, 0.9);
-            color: white;
-            padding: 70px 0 40px;
+            background: rgba(22, 33, 62, 0.9);
+            color: var(--primary);
+            padding: 50px 0 30px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid var(--primary);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
         }
 
         .footer-content {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .footer-logo {
-            font-size: 2.5rem;
-            margin-bottom: 25px;
-            color: var(--accent);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
         }
 
         .copyright {
-            padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(77, 184, 255, 0.1);
+            font-size: 0.9rem;
             opacity: 0.7;
         }
 
@@ -697,7 +852,7 @@
 
         @keyframes float {
             0% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-10px); }
             100% { transform: translateY(0); }
         }
 
@@ -705,34 +860,41 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* Matrix Code Rain */
+        .matrix-code {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--primary);
+            font-size: 18px;
+            opacity: 0.8;
+            text-shadow: 0 0 5px var(--primary);
+        }
+
         /* Responsive Design */
         @media (max-width: 1100px) {
-            .ai-tools {
+            .hacker-tools {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3rem;
+            .terminal-body {
+                padding: 20px;
             }
             
             .section-title h2 {
-                font-size: 2.4rem;
+                font-size: 2.2rem;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
+            .terminal-command {
+                width: calc(100% - 100px);
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 1.9rem;
             }
             
             .side-nav {
@@ -746,28 +908,35 @@
                 width: 50px;
                 height: 50px;
             }
+
+            .target-image {
+                height: 250px;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .terminal-body {
+                padding: 15px;
             }
             
-            .hero-image {
-                width: 180px;
-                height: 180px;
+            .terminal-prompt {
+                font-size: 0.9rem;
             }
             
-            .favorites-container {
+            .terminal-command {
+                font-size: 0.9rem;
+            }
+            
+            .targets-container {
                 grid-template-columns: 1fr;
             }
             
             .contact-method {
                 width: 100%;
-                max-width: 300px;
+                max-width: 280px;
             }
             
-            .social-links {
+            .access-links {
                 flex-direction: column;
                 align-items: center;
             }
@@ -777,19 +946,25 @@
             }
 
             #prompt-input {
-                padding: 15px;
+                padding: 12px;
                 text-align: center;
             }
 
             #generate-btn {
-                padding: 15px;
-                border-radius: 0 0 50px 50px;
+                padding: 12px;
+                border-radius: 0;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Navigation Button -->
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
+    
+    <!-- Scanline Effect -->
+    <div class="scanline"></div>
+
+    <!-- Terminal Style Navigation Button -->
     <div class="nav-button" id="navButton">
         <div class="dot"></div>
         <div class="dot"></div>
@@ -802,72 +977,98 @@
             <i class="fas fa-times"></i>
         </div>
         <ul>
-            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="#ai-tools"><i class="fas fa-robot"></i> AI Tools</a></li>
-            <li><a href="#favorites"><i class="fas fa-star"></i> Favorite People</a></li>
-            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#home"><i class="fas fa-terminal"></i> Home</a></li>
+            <li><a href="#hacker-tools"><i class="fas fa-tools"></i> Hacker Tools</a></li>
+            <li><a href="#targets"><i class="fas fa-crosshairs"></i> Targets</a></li>
+            <li><a href="#contact"><i class="fas fa-satellite-dish"></i> Contact</a></li>
         </ul>
     </div>
 
-    <!-- Hero Section -->
+    <!-- Terminal Style Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-content floating">
-                <div class="hero-image"></div>
-                <h1>My Personal World</h1>
-                <p>Discover my interests, favorite people, and AI-powered creations</p>
+            <div class="terminal floating">
+                <div class="terminal-header">
+                    <div class="terminal-btn btn-red"></div>
+                    <div class="terminal-btn btn-yellow"></div>
+                    <div class="terminal-btn btn-green"></div>
+                </div>
+                <div class="terminal-body">
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@cybersec-portfolio:~$</span>
+                        <span class="terminal-command">whoami</span>
+                    </div>
+                    <div class="terminal-output">
+                        > Elite Security Specialist<br>
+                        > Penetration Tester<br>
+                        > AI Systems Developer<br>
+                        > Cyber Threat Analyst<br>
+                        <br>
+                        > STATUS: [<span style="color:#4db8ff;">ACTIVE</span>]<br>
+                        > LOCATION: [<span style="color:#a7c7e7;">ENCRYPTED</span>]<br>
+                        > IDENTITY: [<span style="color:#ff6b6b;">PROTECTED</span>]
+                    </div>
+                    <div class="terminal-line">
+                        <span class="terminal-prompt">user@cybersec-portfolio:~$</span>
+                        <span class="terminal-command">access_portfolio --security-level=MAX</span>
+                        <span class="blinking-cursor"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- AI Tools Section -->
-    <section id="ai-tools">
+    <!-- Hacker Tools Section -->
+    <section id="hacker-tools">
         <div class="container">
             <div class="section-title">
-                <h2>AI-Powered Tools</h2>
+                <h2>Cyber Security Tools</h2>
             </div>
-            <div class="ai-tools">
-                <!-- Image Generator -->
-                <div class="ai-tool">
+            <div class="hacker-tools">
+                <!-- Neural Image Generator -->
+                <div class="hacker-tool">
                     <div class="tool-title">
-                        <i class="fas fa-image"></i>
-                        <h3>AI Image Generator</h3>
+                        <i class="fas fa-brain"></i>
+                        <h3>Neural Image Generator</h3>
                     </div>
                     <div class="input-group">
-                        <input type="text" id="prompt-input" placeholder="Describe the image you want to generate...">
+                        <input type="text" id="prompt-input" placeholder="Enter image description...">
                         <button id="generate-btn">Generate</button>
                     </div>
                     
                     <div class="image-container">
                         <div class="placeholder-text">
-                            <i class="fas fa-image"></i>
-                            <p>Enter a prompt to generate your image</p>
+                            <i class="fas fa-microchip"></i>
+                            <p>Neural network ready for image synthesis</p>
                         </div>
                         <img id="generated-image" alt="Generated Image">
                         <div class="loading" id="loading">
-                            <i class="fas fa-spinner"></i>
-                            <p>Generating your image...</p>
+                            <i class="fas fa-cog"></i>
+                            <p>Processing neural algorithms...</p>
                         </div>
                     </div>
                     <button class="download-btn" id="download-btn">
-                        <i class="fas fa-download"></i> Download Image
+                        <i class="fas fa-download"></i> Download Asset
                     </button>
                 </div>
 
-                <!-- AI Assistant -->
-                <div class="ai-tool">
+                <!-- Cyber Assistant -->
+                <div class="hacker-tool">
                     <div class="tool-title">
-                        <i class="fas fa-comments"></i>
-                        <h3>AI Chat Assistant</h3>
+                        <i class="fas fa-robot"></i>
+                        <h3>Cyber Assistant</h3>
                     </div>
                     <div class="chat-container">
+                        <div class="chat-header">
+                            <i class="fas fa-shield-alt"></i> Secure AI Assistant v2.0
+                        </div>
                         <div class="chat-messages" id="chat-messages">
                             <div class="message ai-message">
-                                <p>Hi there! 👋 I'm your AI assistant. Ask me anything or request creative content!</p>
+                                <p>> SYSTEM INITIALIZED<br>> SECURE CONNECTION ESTABLISHED<br>> Hello, Operator. How can I assist today?</p>
                             </div>
                         </div>
-                        <div class="chat-input">
-                            <input type="text" id="chat-input" placeholder="Ask me anything...">
+                        <div class="chat-input-container">
+                            <input type="text" id="chat-input" placeholder="Enter command...">
                             <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
                         </div>
                     </div>
@@ -876,65 +1077,65 @@
         </div>
     </section>
 
-    <!-- Favorites Section -->
-    <section id="favorites">
+    <!-- Targets Section -->
+    <section id="targets">
         <div class="container">
             <div class="section-title">
-                <h2>My Favorite People</h2>
+                <h2>High Value Targets</h2>
             </div>
-            <div class="favorites-container">
-                <!-- Favorite Person 1 -->
-                <div class="favorite-card animated">
-                    <div class="favorite-image">
+            <div class="targets-container">
+                <!-- Target 1 -->
+                <div class="target-card animated">
+                    <div class="target-image">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kim_Soo-hyun_2014.jpg/800px-Kim_Soo-hyun_2014.jpg" alt="Kim Soo-hyun">
                     </div>
-                    <div class="favorite-info">
+                    <div class="target-info">
                         <h3>Kim Soo-hyun</h3>
-                        <p>South Korean actor, singer, and model. Known for roles in "My Love from the Star" and "It's Okay to Not Be Okay".</p>
-                        <div class="social-links">
-                            <a href="https://en.wikipedia.org/wiki/Kim_Soo-hyun" class="social-link" target="_blank">
-                                <i class="fab fa-wikipedia-w"></i> Wikipedia
+                        <p>Primary Entertainment Asset<br>South Korean sector</p>
+                        <div class="access-links">
+                            <a href="https://en.wikipedia.org/wiki/Kim_Soo-hyun" class="access-link" target="_blank">
+                                <i class="fab fa-wikipedia-w"></i> Intelligence
                             </a>
-                            <a href="https://www.instagram.com/soohyun_k216/" class="social-link instagram" target="_blank">
-                                <i class="fab fa-instagram"></i> Instagram
+                            <a href="https://www.instagram.com/soohyun_k216/" class="access-link" target="_blank">
+                                <i class="fab fa-instagram"></i> Surveillance
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Favorite Person 2 -->
-                <div class="favorite-card animated" style="animation-delay: 0.2s;">
-                    <div class="favorite-image">
+                <!-- Target 2 -->
+                <div class="target-card animated" style="animation-delay: 0.2s;">
+                    <div class="target-image">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/20230627_IU_%EC%95%84%EC%9D%B4%EC%9C%A0_%28%ED%8C%90%EB%AC%B4%EC%9D%98_%EC%9D%B8%EA%B0%84%29.jpg/800px-20230627_IU_%EC%95%84%EC%9D%B4%EC%9C%A0_%28%ED%8C%90%EB%AC%B4%EC%9D%98_%EC%9D%B8%EA%B0%84%29.jpg" alt="IU">
                     </div>
-                    <div class="favorite-info">
+                    <div class="target-info">
                         <h3>IU (Lee Ji-eun)</h3>
-                        <p>South Korean singer-songwriter and actress. Known as "Nation's Sweetheart" for her versatile talents.</p>
-                        <div class="social-links">
-                            <a href="https://en.wikipedia.org/wiki/IU_(singer)" class="social-link" target="_blank">
-                                <i class="fab fa-wikipedia-w"></i> Wikipedia
+                        <p>Code Name: "Nation's Sweetheart"<br>Multi-threat asset</p>
+                        <div class="access-links">
+                            <a href="https://en.wikipedia.org/wiki/IU_(singer)" class="access-link" target="_blank">
+                                <i class="fab fa-wikipedia-w"></i> Intelligence
                             </a>
-                            <a href="https://www.instagram.com/dlwlrma/" class="social-link instagram" target="_blank">
-                                <i class="fab fa-instagram"></i> Instagram
+                            <a href="https://www.instagram.com/dlwlrma/" class="access-link" target="_blank">
+                                <i class="fab fa-instagram"></i> Surveillance
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Favorite Person 3 -->
-                <div class="favorite-card animated" style="animation-delay: 0.4s;">
-                    <div class="favorite-image">
+                <!-- Target 3 -->
+                <div class="target-card animated" style="animation-delay: 0.4s;">
+                    <div class="target-image">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Park_Seo-joon_December_2019.jpg/800px-Park_Seo-joon_December_2019.jpg" alt="Park Seo-joon">
                     </div>
-                    <div class="favorite-info">
+                    <div class="target-info">
                         <h3>Park Seo-joon</h3>
-                        <p>South Korean actor known for roles in "Itaewon Class" and "What's Wrong with Secretary Kim".</p>
-                        <div class="social-links">
-                            <a href="https://en.wikipedia.org/wiki/Park_Seo-joon" class="social-link" target="_blank">
-                                <i class="fab fa-wikipedia-w"></i> Wikipedia
+                        <p>Strategic Entertainment Asset<br>High influence value</p>
+                        <div class="access-links">
+                            <a href="https://en.wikipedia.org/wiki/Park_Seo-joon" class="access-link" target="_blank">
+                                <i class="fab fa-wikipedia-w"></i> Intelligence
                             </a>
-                            <a href="https://www.instagram.com/bn_sj2013/" class="social-link instagram" target="_blank">
-                                <i class="fab fa-instagram"></i> Instagram
+                            <a href="https://www.instagram.com/bn_sj2013/" class="access-link" target="_blank">
+                                <i class="fab fa-instagram"></i> Surveillance
                             </a>
                         </div>
                     </div>
@@ -947,35 +1148,35 @@
     <section id="contact">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Me</h2>
+                <h2>Secure Contact Channels</h2>
             </div>
             <div class="contact-section">
                 <div class="contact-container">
-                    <h2 class="contact-title">Connect With Me</h2>
-                    <p class="contact-subtitle">Feel free to reach out through these platforms</p>
+                    <h2 class="contact-title">Initiate Connection</h2>
+                    <p class="contact-subtitle">Encrypted communication channels established</p>
                     
                     <div class="contact-methods">
                         <div class="contact-method">
                             <div class="contact-icon">
-                                <i class="fab fa-facebook"></i>
+                                <i class="fab fa-keybase"></i>
                             </div>
-                            <h4>Facebook</h4>
+                            <h4>Encrypted Comms</h4>
                             <a href="https://www.facebook.com/psychopath.irfan.io" target="_blank">@psychopath.irfan.io</a>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-icon">
-                                <i class="fab fa-telegram"></i>
+                                <i class="fab fa-telegram-plane"></i>
                             </div>
-                            <h4>Telegram</h4>
+                            <h4>Secure Messaging</h4>
                             <a href="https://t.me/irfan429x" target="_blank">@irfan429x</a>
                         </div>
                         
                         <div class="contact-method">
                             <div class="contact-icon">
-                                <i class="fab fa-whatsapp"></i>
+                                <i class="fas fa-lock"></i>
                             </div>
-                            <h4>WhatsApp</h4>
+                            <h4>Direct Line</h4>
                             <a href="https://wa.me/6585092351" target="_blank">+65 8509 2351</a>
                         </div>
                     </div>
@@ -989,12 +1190,12 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-heart"></i> My Personal World
+                    <i class="fas fa-user-secret"></i> CYBERSEC PORTFOLIO
                 </div>
-                <p>Discover my hobbies, interests, and favorite people</p>
+                <p>Secure Access Only - Unauthorized Entry Prohibited</p>
             </div>
             <div class="copyright">
-                &copy; 2023 My Personal Website. All rights reserved.
+                &copy; 2023 CYBER SYSTEMS | ENCRYPTED AND SECURED
             </div>
         </div>
     </footer>
@@ -1015,7 +1216,7 @@
 
         // Close nav when clicking outside
         document.addEventListener('click', (e) => {
-            if (!sideNav.contains(e.target) && !navButton.contains(e.target)) {
+            if (!sideNav.contains(e.target) && !navButton.contains(e.target) && !closeNav.contains(e.target)) {
                 sideNav.classList.remove('active');
             }
         });
@@ -1057,6 +1258,43 @@
                 observer.observe(item);
             });
         });
+
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const characters = '01';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        
+        for(let i = 0; i < columns; i++) {
+            drops[i] = Math.floor(Math.random() * canvas.height / fontSize);
+        }
+        
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#4db8ff';
+            ctx.font = `${fontSize}px monospace`;
+            
+            for(let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                
+                drops[i]++;
+            }
+        }
+        
+        setInterval(drawMatrix, 50);
 
         // AI Image Generator functionality
         const generateBtn = document.getElementById('generate-btn');
@@ -1167,7 +1405,7 @@
                 
             } catch (error) {
                 console.error('Error in AI chat:', error);
-                addMessage("Sorry, I'm having trouble responding right now. Please try again later.", 'ai');
+                addMessage("> SYSTEM ERROR: Connection unstable. Try again later.", 'ai');
             }
         }
 
@@ -1181,6 +1419,47 @@
             // Scroll to bottom
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
+
+        // Terminal typing effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const terminalCommand = document.querySelector('.terminal-command');
+            const commands = [
+                'access_portfolio --security-level=MAX',
+                'unlock_cyber_vault',
+                'initiate_ai_systems',
+                'connect_to_neural_network',
+                'run_security_diagnostics'
+            ];
+            
+            let commandIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            
+            function typeCommand() {
+                const currentCommand = commands[commandIndex];
+                
+                if (isDeleting) {
+                    terminalCommand.textContent = currentCommand.substring(0, charIndex - 1);
+                    charIndex--;
+                } else {
+                    terminalCommand.textContent = currentCommand.substring(0, charIndex + 1);
+                    charIndex++;
+                }
+                
+                if (!isDeleting && charIndex === currentCommand.length) {
+                    isDeleting = true;
+                    setTimeout(typeCommand, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    commandIndex = (commandIndex + 1) % commands.length;
+                    setTimeout(typeCommand, 500);
+                } else {
+                    setTimeout(typeCommand, isDeleting ? 50 : 100);
+                }
+            }
+            
+            setTimeout(typeCommand, 2000);
+        });
     </script>
 </body>
 </html>
