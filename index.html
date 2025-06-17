@@ -871,6 +871,147 @@
             text-shadow: 0 0 5px var(--primary);
         }
 
+        /* CapCut Downloader Styles */
+        .capcut-downloader {
+            background: var(--card-bg);
+            border: 1px solid var(--primary);
+            border-radius: 4px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        .capcut-downloader::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .downloader-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .downloader-title i {
+            font-size: 2.2rem;
+            margin-right: 15px;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .downloader-title h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .downloader-input-group {
+            display: flex;
+            margin-bottom: 15px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--primary);
+        }
+
+        #capcut-url {
+            flex: 1;
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #capcut-url::placeholder {
+            color: rgba(77, 184, 255, 0.6);
+        }
+
+        #download-capcut-btn {
+            background: rgba(77, 184, 255, 0.1);
+            color: var(--primary);
+            border: none;
+            padding: 0 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 1px solid var(--primary);
+        }
+
+        #download-capcut-btn:hover {
+            background: rgba(77, 184, 255, 0.3);
+            text-shadow: 0 0 10px var(--primary);
+        }
+
+        .downloader-result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 4px;
+            border: 1px solid var(--primary);
+        }
+
+        .downloader-video {
+            width: 100%;
+            max-height: 400px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .downloader-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .downloader-link {
+            padding: 10px 15px;
+            background: rgba(77, 184, 255, 0.1);
+            color: var(--primary);
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .downloader-link:hover {
+            background: rgba(77, 184, 255, 0.3);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .downloader-error {
+            color: var(--accent);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .downloader-loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+
+        .downloader-loading i {
+            animation: spin 1.5s linear infinite;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
         /* Responsive Design */
         @media (max-width: 1100px) {
             .hacker-tools {
@@ -911,6 +1052,10 @@
 
             .target-image {
                 height: 250px;
+            }
+
+            .downloader-links {
+                flex-direction: column;
             }
         }
 
@@ -953,6 +1098,17 @@
             #generate-btn {
                 padding: 12px;
                 border-radius: 0;
+            }
+
+            .downloader-input-group {
+                flex-direction: column;
+            }
+
+            #download-capcut-btn {
+                padding: 12px;
+                border-radius: 0;
+                border-left: none;
+                border-top: 1px solid var(--primary);
             }
         }
     </style>
@@ -1025,6 +1181,35 @@
                 <h2>Cyber Security Tools</h2>
             </div>
             <div class="hacker-tools">
+                <!-- CapCut Downloader -->
+                <div class="capcut-downloader">
+                    <div class="downloader-title">
+                        <i class="fas fa-download"></i>
+                        <h3>CapCut Downloader</h3>
+                    </div>
+                    <p>Enter CapCut video URL to download without watermark</p>
+                    <div class="downloader-input-group">
+                        <input type="text" id="capcut-url" placeholder="https://www.capcut.com/watch/...">
+                        <button id="download-capcut-btn">Download</button>
+                    </div>
+                    <div class="downloader-error" id="capcut-error"></div>
+                    <div class="downloader-loading" id="capcut-loading">
+                        <i class="fas fa-cog"></i>
+                        <p>Accessing CapCut servers...</p>
+                    </div>
+                    <div class="downloader-result" id="capcut-result">
+                        <video controls class="downloader-video" id="capcut-video"></video>
+                        <div class="downloader-links">
+                            <a href="#" class="downloader-link" id="download-video-btn">
+                                <i class="fas fa-download"></i> Download Video
+                            </a>
+                            <a href="#" class="downloader-link" id="download-audio-btn">
+                                <i class="fas fa-music"></i> Download Audio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Neural Image Generator -->
                 <div class="hacker-tool">
                     <div class="tool-title">
@@ -1418,6 +1603,98 @@
             
             // Scroll to bottom
             chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // CapCut Downloader Functionality
+        const capcutUrlInput = document.getElementById('capcut-url');
+        const downloadCapcutBtn = document.getElementById('download-capcut-btn');
+        const capcutResult = document.getElementById('capcut-result');
+        const capcutVideo = document.getElementById('capcut-video');
+        const downloadVideoBtn = document.getElementById('download-video-btn');
+        const downloadAudioBtn = document.getElementById('download-audio-btn');
+        const capcutError = document.getElementById('capcut-error');
+        const capcutLoading = document.getElementById('capcut-loading');
+
+        downloadCapcutBtn.addEventListener('click', downloadCapcutVideo);
+        capcutUrlInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                downloadCapcutVideo();
+            }
+        });
+
+        async function downloadCapcutVideo() {
+            const capcutUrl = capcutUrlInput.value.trim();
+            
+            if (!capcutUrl) {
+                showCapcutError('Please enter a CapCut video URL');
+                return;
+            }
+
+            // Validate URL format
+            if (!isValidCapcutUrl(capcutUrl)) {
+                showCapcutError('Please enter a valid CapCut video URL');
+                return;
+            }
+
+            // Show loading, hide other elements
+            capcutLoading.style.display = 'block';
+            capcutResult.style.display = 'none';
+            capcutError.style.display = 'none';
+
+            try {
+                // Encode the URL for API
+                const encodedUrl = encodeURIComponent(capcutUrl);
+                const apiUrl = `https://kaiz-apis.gleeze.com/api/capcutdl?url=${encodedUrl}&apikey=86ca2241-daa0-4e5b-9cd5-d545ca8626c0`;
+                
+                // Fetch the video data
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch video data');
+                }
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Display the video
+                capcutVideo.src = data.video_url || data.url;
+                downloadVideoBtn.href = data.video_url || data.url;
+                downloadVideoBtn.download = 'capcut-video.mp4';
+                
+                // If audio URL is available
+                if (data.audio_url) {
+                    downloadAudioBtn.href = data.audio_url;
+                    downloadAudioBtn.download = 'capcut-audio.mp3';
+                    downloadAudioBtn.style.display = 'inline-flex';
+                } else {
+                    downloadAudioBtn.style.display = 'none';
+                }
+                
+                // Show result
+                capcutResult.style.display = 'block';
+                capcutError.style.display = 'none';
+                
+            } catch (error) {
+                console.error('Error downloading CapCut video:', error);
+                showCapcutError(error.message || 'Failed to download video. Please try again.');
+            } finally {
+                capcutLoading.style.display = 'none';
+            }
+        }
+
+        function showCapcutError(message) {
+            capcutError.textContent = `> ERROR: ${message}`;
+            capcutError.style.display = 'block';
+            capcutResult.style.display = 'none';
+        }
+
+        function isValidCapcutUrl(url) {
+            // Basic URL validation for CapCut links
+            return /^https?:\/\/(www\.)?capcut\.(com|tv)\/watch\/.+/.test(url) || 
+                   /^https?:\/\/(www\.)?capcut\.(com|tv)\/t\/.+/.test(url);
         }
 
         // Terminal typing effect
